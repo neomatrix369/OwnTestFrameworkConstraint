@@ -25,9 +25,4 @@ namespace TicTacToeTest
             Console.ReadKey();
         }
     }
-
-    internal class TicTacToeGame
-    {
-        public string Winner { get; set; }
-    }
 }

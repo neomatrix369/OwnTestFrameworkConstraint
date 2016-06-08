@@ -2,6 +2,6 @@
 {
     public class TicTacToeGame
     {
-        public string Winner { get; set; }
+        public string Winner => "No winner - Game in progress.";
     }
 }
