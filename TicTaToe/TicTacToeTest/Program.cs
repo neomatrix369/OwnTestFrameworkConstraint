@@ -44,7 +44,7 @@ namespace TicTacToeTest
         private static void AfterFirstTurnPlayedAtZeroZero_AnXCanBeFountAtThisPosition()
         {
             var expectedValue = "X";
-            var game = new TicTacToeGame();
+            CreateTicTacToeGame();
             game.playAt(0, 0);
 
             if (game.ValueAt(0, 0) == expectedValue)
@@ -61,7 +61,7 @@ namespace TicTacToeTest
         private static void ThereIsNoWinnerAsLongAsTheGameIsInProcess()
         {
             var expectedWinner = "No winner - Game in progress.";
-            var game = new TicTacToeGame();
+            CreateTicTacToeGame();
             if (game.Winner == expectedWinner)
             {
                 Console.WriteLine("Success: Winner is " + expectedWinner);
