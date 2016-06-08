@@ -15,10 +15,18 @@ namespace TicTacToeTest
 
             AfterFirstTurnPlayedAtZeroZero_AnXCanBeFountAtThisPosition();
 
+            AfterSecondTurnPlayedAtOneOne_ThereIsAnOAtPositionOneOne();
+
+
+            Console.ReadKey();
+        }
+
+        private static void AfterSecondTurnPlayedAtOneOne_ThereIsAnOAtPositionOneOne()
+        {
             var expectedValue = "O";
             TicTacToeGame game = new TicTacToeGame();
             game.playAt(0, 0);
-            game.playAt(1,  1);
+            game.playAt(1, 1);
 
             if (game.ValueAt(1, 1) == expectedValue)
             {
@@ -28,9 +36,6 @@ namespace TicTacToeTest
             {
                 Console.WriteLine("Failure: Expected value at 1, 1 was " + expectedValue + ", but found " + game.ValueAt(0, 0));
             }
-
-
-            Console.ReadKey();
         }
 
         private static void AfterFirstTurnPlayedAtZeroZero_AnXCanBeFountAtThisPosition()
