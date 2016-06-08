@@ -4,6 +4,8 @@ namespace TicTacToeTest
 {
     internal class Program
     {
+        private static TicTacToeGame game;
+
         private static void Main(string[] args)
         {
             ThereIsNoWinnerAsLongAsTheGameIsInProcess();
@@ -19,7 +21,7 @@ namespace TicTacToeTest
         private static void AfterSecondTurnPlayedAtOneOne_ThereIsAnOAtPositionOneOne()
         {
             var expectedValue = "O";
-            var game = new TicTacToeGame();
+            CreateTicTacToeGame();
             game.playAt(0, 0);
             game.playAt(1, 1);
 
@@ -32,6 +34,11 @@ namespace TicTacToeTest
                 Console.WriteLine("Failure: Expected value at 1, 1 was " + expectedValue + ", but found " +
                                   game.ValueAt(0, 0));
             }
+        }
+
+        private static void CreateTicTacToeGame()
+        {
+            game = new TicTacToeGame();
         }
 
         private static void AfterFirstTurnPlayedAtZeroZero_AnXCanBeFountAtThisPosition()
