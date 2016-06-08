@@ -1,10 +1,8 @@
-﻿using System;
-
-namespace TicTacToeTest
+﻿namespace TicTacToeTest
 {
     public class TicTacToeGame
     {
-        private string[,] board = new string[3,3];
+        private readonly string[,] board = new string[3, 3];
 
         private string actualValue = string.Empty;
 
