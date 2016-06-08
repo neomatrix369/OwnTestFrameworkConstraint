@@ -9,21 +9,10 @@ namespace TicTacToeTest
         private static void Main(string[] args)
         {
             ThereIsNoWinnerAsLongAsTheGameIsInProcess();
-
             AfterFirstTurnPlayedAtZeroZero_AnXCanBeFountAtThisPosition();
-
             AfterSecondTurnPlayedAtOneOne_ThereIsAnOAtPositionOneOne();
 
-
             Console.ReadKey();
-        }
-
-        private static void AfterSecondTurnPlayedAtOneOne_ThereIsAnOAtPositionOneOne()
-        {
-            CreateTicTacToeGame();
-            game.playAt(0, 0);
-            game.playAt(1, 1);
-            CheckPositionForValue(1, 1, "O");
         }
 
         private static void CheckPositionForValue(int x, int y, string expectedValue)
@@ -44,10 +33,19 @@ namespace TicTacToeTest
             game = new TicTacToeGame();
         }
 
+
+        private static void AfterSecondTurnPlayedAtOneOne_ThereIsAnOAtPositionOneOne()
+        {
+            CreateTicTacToeGame();
+            game.PlayAt(0, 0);
+            game.PlayAt(1, 1);
+            CheckPositionForValue(1, 1, "O");
+        }
+
         private static void AfterFirstTurnPlayedAtZeroZero_AnXCanBeFountAtThisPosition()
         {
             CreateTicTacToeGame();
-            game.playAt(0, 0);
+            game.PlayAt(0, 0);
             CheckPositionForValue(0, 0, "X");
         }
 

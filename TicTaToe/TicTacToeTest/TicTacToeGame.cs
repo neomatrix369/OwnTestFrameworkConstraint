@@ -13,7 +13,7 @@
             return board[x, y];
         }
 
-        public void playAt(int x, int y)
+        public void PlayAt(int x, int y)
         {
             actualValue = actualValue == "X" ? "O" : "X";
             board[x, y] = actualValue;
