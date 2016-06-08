@@ -15,6 +15,20 @@ namespace TicTacToeTest
 
             AfterFirstTurnPlayedAtZeroZero_AnXCanBeFountAtThisPosition();
 
+            var expectedValue = "O";
+            TicTacToeGame game = new TicTacToeGame();
+            game.playAt(0, 0);
+            game.playAt(1,  1);
+
+            if (game.ValueAt(1, 1) == expectedValue)
+            {
+                Console.WriteLine("Success: Value at 1, 1 is " + expectedValue + " as expected.");
+            }
+            else
+            {
+                Console.WriteLine("Failure: Expected value at 1, 1 was " + expectedValue + ", but found " + game.ValueAt(0, 0));
+            }
+
 
             Console.ReadKey();
         }
