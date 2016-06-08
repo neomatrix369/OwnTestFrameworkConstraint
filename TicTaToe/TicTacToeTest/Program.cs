@@ -11,6 +11,13 @@ namespace TicTacToeTest
     {
         static void Main(string[] args)
         {
+            ThereIsNoWinnerAsLongAsTheGameIsInProcess();
+
+            Console.ReadKey();
+        }
+
+        private static void ThereIsNoWinnerAsLongAsTheGameIsInProcess()
+        {
             var expectedWinner = "No winner - Game in progress.";
             TicTacToeGame game = new TicTacToeGame();
             if (game.Winner == expectedWinner)
@@ -21,8 +28,6 @@ namespace TicTacToeTest
             {
                 Console.WriteLine("Failure: Expected winner was " + expectedWinner + ", but winner is " + game.Winner);
             }
-
-            Console.ReadKey();
         }
     }
 }
