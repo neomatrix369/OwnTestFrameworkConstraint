@@ -12,7 +12,19 @@ namespace TicTacToeTest
             AfterFirstTurnPlayedAtZeroZero_AnXCanBeFountAtThisPosition();
             AfterSecondTurnPlayedAtOneOne_ThereIsAnOAtPositionOneOne();
 
+            XWinsIfThreeVerticalXAtY0AreFound();
             Console.ReadKey();
+        }
+
+        private static void XWinsIfThreeVerticalXAtY0AreFound()
+        {
+            CreateTicTacToeGame();
+            game.PlayAt(0, 0);
+            game.PlayAt(1, 0);
+            game.PlayAt(0, 1);
+            game.PlayAt(1, 1);
+            game.PlayAt(0, 2);
+            CheckThatTheWinnerIs("X");
         }
 
         private static void CheckPositionForValue(int x, int y, string expectedValue)
