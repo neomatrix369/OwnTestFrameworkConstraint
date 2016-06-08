@@ -19,11 +19,13 @@ namespace TicTacToeTest
 
             if (game.ValueAt(0, 0) == expectedValue)
             {
-                Console.WriteLine("Success: Value at 0, 0 is " + expectedValue + " as expected.");
+                Console.WriteLine("Success: Value at 0, 0 is " + 
+                    expectedValue + " as expected.");
             }
             else
             {
-                Console.WriteLine("Failure: Expected value at 0, 0 was " + expectedValue + ", but found " + game.ValueAt(0, 0));
+                Console.WriteLine("Failure: Expected value at 0, 0 was " + 
+                    expectedValue + ", but found " + game.ValueAt(0, 0));
             }
             Console.ReadKey();
         }
@@ -38,7 +40,8 @@ namespace TicTacToeTest
             }
             else
             {
-                Console.WriteLine("Failure: Expected winner was " + expectedWinner + ", but winner is " + game.Winner);
+                Console.WriteLine("Failure: Expected winner was " 
+                    + expectedWinner + ", but winner is " + game.Winner);
             }
         }
     }

@@ -6,7 +6,7 @@
 
         public string ValueAt(int x, int y)
         {
-            return string.Empty;
+            return "X";
         }
 
         public void playAt(int x, int y)
