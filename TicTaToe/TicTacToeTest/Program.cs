@@ -46,19 +46,9 @@ namespace TicTacToeTest
 
         private static void AfterFirstTurnPlayedAtZeroZero_AnXCanBeFountAtThisPosition()
         {
-            var expectedValue = "X";
             CreateTicTacToeGame();
             game.playAt(0, 0);
-
-            if (game.ValueAt(0, 0) == expectedValue)
-            {
-                Console.WriteLine("Success: Value at 0, 0 is " + expectedValue + " as expected.");
-            }
-            else
-            {
-                Console.WriteLine("Failure: Expected value at 0, 0 was " + expectedValue + ", but found " +
-                                  game.ValueAt(0, 0));
-            }
+            CheckPositionForValue(0, 0, "X");
         }
 
         private static void ThereIsNoWinnerAsLongAsTheGameIsInProcess()
