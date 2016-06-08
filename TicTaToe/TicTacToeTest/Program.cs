@@ -20,19 +20,22 @@ namespace TicTacToeTest
 
         private static void AfterSecondTurnPlayedAtOneOne_ThereIsAnOAtPositionOneOne()
         {
-            var expectedValue = "O";
             CreateTicTacToeGame();
             game.playAt(0, 0);
             game.playAt(1, 1);
+            CheckPositionForValue(1, 1, "O");
+        }
 
-            if (game.ValueAt(1, 1) == expectedValue)
+        private static void CheckPositionForValue(int x, int y, string expectedValue)
+        {
+            if (game.ValueAt(x, y) == expectedValue)
             {
-                Console.WriteLine("Success: Value at 1, 1 is " + expectedValue + " as expected.");
+                Console.WriteLine("Success: Value at " + x + ", " + y + " is " + expectedValue + " as expected.");
             }
             else
             {
-                Console.WriteLine("Failure: Expected value at 1, 1 was " + expectedValue + ", but found " +
-                                  game.ValueAt(0, 0));
+                Console.WriteLine("Failure: Expected value at " + x + ", " + y + " was " + expectedValue + ", but found " +
+                                  game.ValueAt(x, y));
             }
         }
 
