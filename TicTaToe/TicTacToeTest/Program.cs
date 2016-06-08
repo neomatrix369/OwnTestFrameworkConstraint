@@ -33,6 +33,17 @@ namespace TicTacToeTest
             game = new TicTacToeGame();
         }
 
+        private static void CheckThatTheWinnerIs(string expectedWinner)
+        {
+            if (game.Winner == expectedWinner)
+            {
+                Console.WriteLine("Success: Winner is " + expectedWinner);
+            }
+            else
+            {
+                Console.WriteLine("Failure: Expected winner was " + expectedWinner + ", but winner is " + game.Winner);
+            }
+        }
 
         private static void AfterSecondTurnPlayedAtOneOne_ThereIsAnOAtPositionOneOne()
         {
@@ -51,16 +62,9 @@ namespace TicTacToeTest
 
         private static void ThereIsNoWinnerAsLongAsTheGameIsInProcess()
         {
-            var expectedWinner = "No winner - Game in progress.";
             CreateTicTacToeGame();
-            if (game.Winner == expectedWinner)
-            {
-                Console.WriteLine("Success: Winner is " + expectedWinner);
-            }
-            else
-            {
-                Console.WriteLine("Failure: Expected winner was " + expectedWinner + ", but winner is " + game.Winner);
-            }
+            CheckThatTheWinnerIs("No winner - Game in progress.");
         }
+
     }
 }
