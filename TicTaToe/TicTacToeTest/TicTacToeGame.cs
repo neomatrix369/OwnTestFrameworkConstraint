@@ -25,9 +25,9 @@ namespace TicTacToeTest
         private void SetWinner(Position p)
         {
             if (IsVerticalWinnerAtColumn(p.X) ||
-                (ValueAt(0, 0) == actualValue
-                && ValueAt(1, 0) == actualValue
-                && ValueAt(2, 0) == actualValue
+                (ValueAt(0, p.Y) == actualValue
+                && ValueAt(1, p.Y) == actualValue
+                && ValueAt(2, p.Y) == actualValue
                 ))
             {
                 Winner = actualValue;
