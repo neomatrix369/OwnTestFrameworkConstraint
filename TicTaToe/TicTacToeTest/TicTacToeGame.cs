@@ -1,4 +1,6 @@
-﻿namespace TicTacToeTest
+﻿using System;
+
+namespace TicTacToeTest
 {
     public class TicTacToeGame
     {
@@ -22,20 +24,21 @@
 
         private void SetWinner(Position p)
         {
-            var count = 0;
-            for (var actualY = 0; actualY < 3; actualY++)
-            {
-                if (board[p.X, actualY] == actualValue)
-                {
-                    count++;
-                }
-            }
-            if (count == 3)
+            if (IsHorizontalWinnerAtColumn(p.X))
             {
                 Winner = actualValue;
             }
         }
 
-        public string ValueAt(Position p) => board[p.X, p.Y];
+        private bool IsHorizontalWinnerAtColumn(int x)
+        {
+            return ValueAt(x, 0) == actualValue &&
+                   ValueAt(x, 1) == actualValue &&
+                   ValueAt(x, 2) == actualValue;
+        }
+
+        public string ValueAt(Position p) => ValueAt(p.X, p.Y);
+
+        private string ValueAt(int x, int y) => board[x, y];
     }
 }
