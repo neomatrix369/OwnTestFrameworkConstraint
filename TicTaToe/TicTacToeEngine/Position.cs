@@ -1,4 +1,4 @@
-﻿namespace TicTacToeTest
+﻿namespace TicTacToeEngine
 {
     public class Position
     {

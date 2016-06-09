@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TicTacToeTest
+﻿namespace TicTacToeEngine
 {
     public class TicTacToeGame
     {
