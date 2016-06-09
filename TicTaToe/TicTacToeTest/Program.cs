@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 
 namespace TicTacToeTest
@@ -137,28 +138,21 @@ namespace TicTacToeTest
         #region asserts
         private static void CheckThatTheWinnerIs(string expectedWinner)
         {
-            if (game.Winner == expectedWinner)
-            {
-                Console.WriteLine("Success: Winner is " + expectedWinner);
-            }
-            else
-            {
-                Console.WriteLine("Failure: Expected winner was " + expectedWinner + ", but winner is " + game.Winner);
-            }
+            AreEqual(game.Winner, expectedWinner);
         }
 
         private static void CheckPositionForValue(Position p, string expectedValue)
         {
-            if (game.ValueAt(p) == expectedValue)
-            {
-                Console.WriteLine("Success: Value at " + p.X + ", " + p.Y + " is " + expectedValue + " as expected.");
-            }
-            else
-            {
-                Console.WriteLine("Failure: Expected value at " + p.X + ", " + p.Y + " was " + expectedValue + ", but found " +
-                                  game.ValueAt(p));
-            }
+            AreEqual(game.ValueAt(p), expectedValue);
         }
+
+        private static void AreEqual(string actual, string expected)
+        {
+            string message = "Expected value was " + expected + ", actual value was " + actual;
+            var prefix = actual == expected ? "Succes: " : "Failure: ";
+            Console.WriteLine(prefix + message);
+        }
+
 
         #endregion
 
