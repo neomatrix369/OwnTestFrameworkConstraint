@@ -123,10 +123,7 @@ namespace TicTacToeTest
 
         private static void PlayTheGivenPositions(List<Position> positions)
         {
-            foreach (Position position in positions)
-            {
-                game.PlayAt(position);
-            }
+            positions.ForEach(p => game.PlayAt(p));
         }
 
         private static void CreateEmptyTicTacToeGame()
