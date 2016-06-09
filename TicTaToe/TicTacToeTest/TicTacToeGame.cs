@@ -14,25 +14,30 @@ namespace TicTacToeTest
 
         private string NoWinner = "No winner - Game in progress.";
         public string Winner { get; private set; }
-        public string ValueAt(int x, int y) => board[x, y];
 
-        private void PlayAt(int x, int y)
+        public void PlayAt(Position newPosition)
         {
             actualValue = actualValue == "X" ? "O" : "X";
-            board[x, y] = actualValue;
+            board[newPosition.X, newPosition.Y] = actualValue;
+            SetWinner(newPosition);
+        }
+
+        private void SetWinner(Position p)
+        {
             var count = 0;
             for (var actualY = 0; actualY < 3; actualY++)
             {
-                if (board[x, actualY] == actualValue)
+                if (board[p.X, actualY] == actualValue)
+                {
                     count++;
+                }
             }
             if (count == 3)
+            {
                 Winner = actualValue;
+            }
         }
 
-        public void PlayAt(Position p)
-        {
-            PlayAt(p.X, p.Y);
-        }
+        public string ValueAt(Position p) => board[p.X, p.Y];
     }
 }

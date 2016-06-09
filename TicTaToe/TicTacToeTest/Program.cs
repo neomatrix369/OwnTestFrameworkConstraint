@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace TicTacToeTest
 {
@@ -8,40 +9,62 @@ namespace TicTacToeTest
 
         private static void Main(string[] args)
         {
-            ThereIsNoWinnerAsLongAsTheGameIsInProcess();
-            AfterFirstTurnPlayedAtZeroZero_AnXCanBeFountAtThisPosition();
+            ThereIsNoWinnerAsTheGameBegins();
+            AfterFirstTurnPlayedAtZeroZero_ThereIsAnXAtpositionZeroZero();
             AfterSecondTurnPlayedAtOneOne_ThereIsAnOAtPositionOneOne();
+            XWinsIfThreeVerticalXsAreFoundAtColumnZero();
 
-            XWinsIfThreeVerticalXAtY0AreFound();
             Console.ReadKey();
         }
 
-        private static void XWinsIfThreeVerticalXAtY0AreFound()
+        #region Tests
+        private static void ThereIsNoWinnerAsTheGameBegins()
         {
             CreateEmptyTicTacToeGame();
-            var p1 = new Position(0, 0);
-            var p2 = new Position(1, 0);
-            var p3 = new Position(0, 1);
-            var p4 = new Position(1, 1);
-            var p5 = new Position(0, 2);
-            game.PlayAt(p1);
-            game.PlayAt(p2);
-            game.PlayAt(p3);
-            game.PlayAt(p4);
-            game.PlayAt(p5);
+            CheckThatTheWinnerIs("No winner - Game in progress.");
+        }
+
+        private static void AfterFirstTurnPlayedAtZeroZero_ThereIsAnXAtpositionZeroZero()
+        {
+            CreateEmptyTicTacToeGame();
+            PlayTheGivenPositions(PlayOnceAtZeroZero);
+            CheckPositionForValue(new Position(0, 0), "X");
+        }
+
+        private static void AfterSecondTurnPlayedAtOneOne_ThereIsAnOAtPositionOneOne()
+        {
+            CreateEmptyTicTacToeGame();
+            PlayTheGivenPositions(PlayTwiceSecondAtOneOne);
+            CheckPositionForValue(new Position(1,1), "O");
+        }
+
+        private static void XWinsIfThreeVerticalXsAreFoundAtColumnZero()
+        {
+            CreateEmptyTicTacToeGame();
+            PlayTheGivenPositions(XWinsWithThreeXsAtColumnZero);
             CheckThatTheWinnerIs("X");
         }
 
-        private static void CheckPositionForValue(int x, int y, string expectedValue)
+        #endregion
+
+        #region Glue code
+        private static List<Position> XWinsWithThreeXsAtColumnZero =>
+            new List<Position>
+                {new Position(0, 0), new Position(1, 0), new Position(0, 1),
+                new Position(1, 1), new Position(0, 2)};
+
+        private static List<Position> PlayTwiceSecondAtOneOne =>
+            new List<Position>
+                {new Position(0, 0), new Position(1, 1)};
+
+        private static List<Position> PlayOnceAtZeroZero =>
+            new List<Position> {new Position(0, 0)};
+
+        private static void PlayTheGivenPositions(List<Position> p)
         {
-            if (game.ValueAt(x, y) == expectedValue)
+            foreach (Position position in p)
             {
-                Console.WriteLine("Success: Value at " + x + ", " + y + " is " + expectedValue + " as expected.");
-            }
-            else
-            {
-                Console.WriteLine("Failure: Expected value at " + x + ", " + y + " was " + expectedValue + ", but found " +
-                                  game.ValueAt(x, y));
+                game.PlayAt(position);
             }
         }
 
@@ -49,7 +72,9 @@ namespace TicTacToeTest
         {
             game = new TicTacToeGame();
         }
+        #endregion
 
+        #region asserts
         private static void CheckThatTheWinnerIs(string expectedWinner)
         {
             if (game.Winner == expectedWinner)
@@ -62,33 +87,23 @@ namespace TicTacToeTest
             }
         }
 
-        private static void AfterSecondTurnPlayedAtOneOne_ThereIsAnOAtPositionOneOne()
-        {
-            CreateEmptyTicTacToeGame();
-            var p1 = new Position(0, 0);
-            var p2 = new Position(1, 0);
-            game.PlayAt(p1);
-            game.PlayAt(p2);
-            CheckPositionForValue(p2, "O");
-        }
-
-        private static void AfterFirstTurnPlayedAtZeroZero_AnXCanBeFountAtThisPosition()
-        {
-            CreateEmptyTicTacToeGame();
-            Position p = new Position(0, 0);
-            game.PlayAt(p);
-            CheckPositionForValue(p, "X");
-        }
-
         private static void CheckPositionForValue(Position p, string expectedValue)
         {
-            CheckPositionForValue(p.X, p.Y, expectedValue);
+            if (game.ValueAt(p) == expectedValue)
+            {
+                Console.WriteLine("Success: Value at " + p.X + ", " + p.Y + " is " + expectedValue + " as expected.");
+            }
+            else
+            {
+                Console.WriteLine("Failure: Expected value at " + p.X + ", " + p.Y + " was " + expectedValue + ", but found " +
+                                  game.ValueAt(p));
+            }
         }
 
-        private static void ThereIsNoWinnerAsLongAsTheGameIsInProcess()
-        {
-            CreateEmptyTicTacToeGame();
-            CheckThatTheWinnerIs("No winner - Game in progress.");
-        }
+        #endregion
+
+
+
+
     }
 }
