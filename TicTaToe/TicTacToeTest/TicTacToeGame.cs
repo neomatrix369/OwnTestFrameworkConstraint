@@ -1,4 +1,6 @@
-﻿namespace TicTacToeTest
+﻿using System;
+
+namespace TicTacToeTest
 {
     public class TicTacToeGame
     {
@@ -26,6 +28,11 @@
             }
             if (count == 3)
                 Winner = actualValue;
+        }
+
+        internal void PlayAt(Position p)
+        {
+            PlayAt(p.X, p.Y);
         }
     }
 }

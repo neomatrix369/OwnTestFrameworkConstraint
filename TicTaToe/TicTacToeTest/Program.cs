@@ -18,7 +18,7 @@ namespace TicTacToeTest
 
         private static void XWinsIfThreeVerticalXAtY0AreFound()
         {
-            CreateTicTacToeGame();
+            CreateEmptyTicTacToeGame();
             game.PlayAt(0, 0);
             game.PlayAt(1, 0);
             game.PlayAt(0, 1);
@@ -40,7 +40,7 @@ namespace TicTacToeTest
             }
         }
 
-        private static void CreateTicTacToeGame()
+        private static void CreateEmptyTicTacToeGame()
         {
             game = new TicTacToeGame();
         }
@@ -59,7 +59,7 @@ namespace TicTacToeTest
 
         private static void AfterSecondTurnPlayedAtOneOne_ThereIsAnOAtPositionOneOne()
         {
-            CreateTicTacToeGame();
+            CreateEmptyTicTacToeGame();
             game.PlayAt(0, 0);
             game.PlayAt(1, 1);
             CheckPositionForValue(1, 1, "O");
@@ -67,16 +67,36 @@ namespace TicTacToeTest
 
         private static void AfterFirstTurnPlayedAtZeroZero_AnXCanBeFountAtThisPosition()
         {
-            CreateTicTacToeGame();
-            game.PlayAt(0, 0);
-            CheckPositionForValue(0, 0, "X");
+            CreateEmptyTicTacToeGame();
+            Position p = new Position(0, 0);
+            game.PlayAt(p);
+            CheckPositionForValue(p, "X");
+        }
+
+        private static void CheckPositionForValue(Position p, string expectedValue)
+        {
+            CheckPositionForValue(p.X, p.Y, expectedValue);
         }
 
         private static void ThereIsNoWinnerAsLongAsTheGameIsInProcess()
         {
-            CreateTicTacToeGame();
+            CreateEmptyTicTacToeGame();
             CheckThatTheWinnerIs("No winner - Game in progress.");
         }
+    }
 
+    internal class Position
+    {
+        private readonly int y;
+
+        public Position(int x, int y)
+        {
+            this.y = y;
+            X = x;
+        }
+
+        public int X { get; private set; }
+
+        public int Y { get; private set; }
     }
 }
