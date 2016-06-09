@@ -8,10 +8,8 @@
             X = x;
         }
 
-        public int X { get; private set; }
+        public int X { get; }
 
-        public int Y { get; private set; }
-
-        public override string ToString() => "[" + X + ", " + Y + "]";
+        public int Y { get; }
     }
 }
