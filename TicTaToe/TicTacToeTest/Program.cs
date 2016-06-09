@@ -110,7 +110,6 @@ namespace TicTacToeTest
             Console.WriteLine(prefix + message);
         }
 
-
         #endregion
     }
 }
