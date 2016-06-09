@@ -14,7 +14,8 @@ namespace TicTacToeTest
             AfterSecondTurnPlayedAtOneOne_ThereIsAnOAtPositionOneOne();
             XWinsIfThreeVerticalXsAreFoundAtColumnZero();
             OWinsIfThreeVerticalOsAreFoundAtColumnOne();
-            XWinsIfThreeHorizontalXsAreFoundAtColumnZero();
+            XWinsIfThreeHorizontalXsAreFoundAtRowZero();
+            OWinsIfThreeHorizontalOsAreFoundAtRowTwo();
 
             Console.ReadKey();
         }
@@ -50,15 +51,22 @@ namespace TicTacToeTest
         private static void OWinsIfThreeVerticalOsAreFoundAtColumnOne()
         {
             CreateEmptyTicTacToeGame();
-            PlayTheGivenPositions(XWinsWithThreeXsAtColumnOne);
+            PlayTheGivenPositions(OWinsWithThreeOsAtColumnOne);
             CheckThatTheWinnerIs("O");
         }
 
-        private static void XWinsIfThreeHorizontalXsAreFoundAtColumnZero()
+        private static void XWinsIfThreeHorizontalXsAreFoundAtRowZero()
         {
             CreateEmptyTicTacToeGame();
             PlayTheGivenPositions(XWinsWithThreeXsAtRowZero);
             CheckThatTheWinnerIs("X");
+        }
+
+        private static void OWinsIfThreeHorizontalOsAreFoundAtRowTwo()
+        {
+            CreateEmptyTicTacToeGame();
+            PlayTheGivenPositions(OWinsWithThreeOsAtRowTwo);
+            CheckThatTheWinnerIs("O");
         }
 
 
@@ -72,10 +80,14 @@ namespace TicTacToeTest
             new List<Position>
                 {new Position(0, 0), new Position(1,2), new Position(1, 0),
                 new Position(1, 1), new Position(2, 0)};
-        private static List<Position> XWinsWithThreeXsAtColumnOne =>
+        private static List<Position> OWinsWithThreeOsAtColumnOne =>
             new List<Position>
                 {new Position(0, 0), new Position(1, 0), new Position(0, 1),
                 new Position(1, 1), new Position(2, 0), new Position(1, 2)};
+        private static List<Position> OWinsWithThreeOsAtRowTwo =>
+            new List<Position>
+                {new Position(0, 0), new Position(1,2), new Position(1, 0),
+                new Position(0, 2), new Position(0,1), new Position(2, 2)};
 
         private static List<Position> PlayTwiceSecondAtOneOne =>
             new List<Position>
