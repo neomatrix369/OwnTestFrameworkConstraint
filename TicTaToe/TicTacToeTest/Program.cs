@@ -121,9 +121,9 @@ namespace TicTacToeTest
         private static List<Position> PlayOnceAtZeroZero =>
             new List<Position> {new Position(0, 0)};
 
-        private static void PlayTheGivenPositions(List<Position> p)
+        private static void PlayTheGivenPositions(List<Position> positions)
         {
-            foreach (Position position in p)
+            foreach (Position position in positions)
             {
                 game.PlayAt(position);
             }
