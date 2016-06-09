@@ -13,6 +13,7 @@ namespace TicTacToeTest
             AfterFirstTurnPlayedAtZeroZero_ThereIsAnXAtpositionZeroZero();
             AfterSecondTurnPlayedAtOneOne_ThereIsAnOAtPositionOneOne();
             XWinsIfThreeVerticalXsAreFoundAtColumnZero();
+            OWinsIfThreeHorizontalXsAreFoundAtColumnOne();
 
             Console.ReadKey();
         }
@@ -45,13 +46,23 @@ namespace TicTacToeTest
             CheckThatTheWinnerIs("X");
         }
 
-        #endregion
+        private static void OWinsIfThreeHorizontalXsAreFoundAtColumnOne()
+        {
+            CreateEmptyTicTacToeGame();
+            PlayTheGivenPositions(XWinsWithThreeXsAtColumnOne);
+            CheckThatTheWinnerIs("O");
+        }
 
+        #endregion
         #region Glue code
         private static List<Position> XWinsWithThreeXsAtColumnZero =>
             new List<Position>
                 {new Position(0, 0), new Position(1, 0), new Position(0, 1),
                 new Position(1, 1), new Position(0, 2)};
+        private static List<Position> XWinsWithThreeXsAtColumnOne =>
+            new List<Position>
+                {new Position(0, 0), new Position(1, 0), new Position(0, 1),
+                new Position(1, 1), new Position(2, 0), new Position(1, 2)};
 
         private static List<Position> PlayTwiceSecondAtOneOne =>
             new List<Position>
