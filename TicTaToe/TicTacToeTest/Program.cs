@@ -33,93 +33,62 @@ namespace TicTacToeTest
         private static void AfterFirstTurnPlayedAtZeroZero_ThereIsAnXAtpositionZeroZero()
         {
             CreateEmptyTicTacToeGame();
-            PlayTheGivenPositions(PlayOnceAtZeroZero);
+            PlayTheGivenPositions(FakePlaySeries.PlayOnceAtZeroZero);
             AreEqual(game.ValueAt(new Position(0, 0)), "X");
         }
 
         private static void AfterSecondTurnPlayedAtOneOne_ThereIsAnOAtPositionOneOne()
         {
             CreateEmptyTicTacToeGame();
-            PlayTheGivenPositions(PlayTwiceSecondAtOneOne);
+            PlayTheGivenPositions(FakePlaySeries.PlayTwiceSecondAtOneOne);
             AreEqual(game.ValueAt(new Position(1,1)), "O");
         }
 
         private static void XWinsIfThreeVerticalXsAreFoundAtColumnZero()
         {
             CreateEmptyTicTacToeGame();
-            PlayTheGivenPositions(XWinsWithThreeXsAtColumnZero);
+            PlayTheGivenPositions(FakePlaySeries.XWinsWithThreeXsAtColumnZero);
             AreEqual(game.Winner, "X");
         }
 
         private static void OWinsIfThreeVerticalOsAreFoundAtColumnOne()
         {
             CreateEmptyTicTacToeGame();
-            PlayTheGivenPositions(OWinsWithThreeOsAtColumnOne);
+            PlayTheGivenPositions(FakePlaySeries.OWinsWithThreeOsAtColumnOne);
             AreEqual(game.Winner, "O");
         }
 
         private static void XWinsIfThreeHorizontalXsAreFoundAtRowZero()
         {
             CreateEmptyTicTacToeGame();
-            PlayTheGivenPositions(XWinsWithThreeXsAtRowZero);
+            PlayTheGivenPositions(FakePlaySeries.XWinsWithThreeXsAtRowZero);
             AreEqual(game.Winner, "X");
         }
 
         private static void OWinsIfThreeHorizontalOsAreFoundAtRowTwo()
         {
             CreateEmptyTicTacToeGame();
-            PlayTheGivenPositions(OWinsWithThreeOsAtRowTwo);
+            PlayTheGivenPositions(FakePlaySeries.OWinsWithThreeOsAtRowTwo);
             AreEqual(game.Winner, "O");
         }
 
         private static void XWinsIfThereIsThreeXsInTheFirstDiagonal()
         {
             CreateEmptyTicTacToeGame();
-            PlayTheGivenPositions(XWinsWithThreeXsAtFirstDiagonal);
+            PlayTheGivenPositions(FakePlaySeries.XWinsWithThreeXsAtFirstDiagonal);
             AreEqual(game.Winner, "X");
         }
 
         private static void XWinsIfThereIsThreeXsInTheSecondDiagonal()
         {
             CreateEmptyTicTacToeGame();
-            PlayTheGivenPositions(XWinsWithThreeXsAtSecondDiagonal);
+            PlayTheGivenPositions(FakePlaySeries.XWinsWithThreeXsAtSecondDiagonal);
             AreEqual(game.Winner, "X");
         }
 
         #endregion
 
         #region Glue code
-        private static List<Position> XWinsWithThreeXsAtColumnZero =>
-            new List<Position>
-                {new Position(0, 0), new Position(1, 0), new Position(0, 1),
-                new Position(1, 1), new Position(0, 2)};
-        private static List<Position> XWinsWithThreeXsAtRowZero =>
-            new List<Position>
-                {new Position(0, 0), new Position(1,2), new Position(1, 0),
-                new Position(1, 1), new Position(2, 0)};
-        private static List<Position> XWinsWithThreeXsAtFirstDiagonal =>
-            new List<Position>
-                {new Position(0, 0), new Position(1,2), new Position(1, 1),
-                new Position(1, 0), new Position(2, 2)};
-        private static List<Position> XWinsWithThreeXsAtSecondDiagonal =>
-            new List<Position>
-                {new Position(0, 2), new Position(1,2), new Position(1, 1),
-                new Position(1, 0), new Position(2, 0)};
-        private static List<Position> OWinsWithThreeOsAtColumnOne =>
-            new List<Position>
-                {new Position(0, 0), new Position(1, 0), new Position(0, 1),
-                new Position(1, 1), new Position(2, 0), new Position(1, 2)};
-        private static List<Position> OWinsWithThreeOsAtRowTwo =>
-            new List<Position>
-                {new Position(0, 0), new Position(1,2), new Position(1, 0),
-                new Position(0, 2), new Position(0,1), new Position(2, 2)};
-
-        private static List<Position> PlayTwiceSecondAtOneOne =>
-            new List<Position>
-                {new Position(0, 0), new Position(1, 1)};
-
-        private static List<Position> PlayOnceAtZeroZero =>
-            new List<Position> {new Position(0, 0)};
 
         private static void PlayTheGivenPositions(List<Position> positions)
         {
@@ -143,9 +112,5 @@ namespace TicTacToeTest
 
 
         #endregion
-
-
-
-
     }
 }
