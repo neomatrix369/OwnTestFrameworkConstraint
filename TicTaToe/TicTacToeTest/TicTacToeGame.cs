@@ -16,7 +16,7 @@ namespace TicTacToeTest
         public string Winner { get; private set; }
         public string ValueAt(int x, int y) => board[x, y];
 
-        public void PlayAt(int x, int y)
+        private void PlayAt(int x, int y)
         {
             actualValue = actualValue == "X" ? "O" : "X";
             board[x, y] = actualValue;
@@ -30,7 +30,7 @@ namespace TicTacToeTest
                 Winner = actualValue;
         }
 
-        internal void PlayAt(Position p)
+        public void PlayAt(Position p)
         {
             PlayAt(p.X, p.Y);
         }
