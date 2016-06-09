@@ -24,15 +24,16 @@ namespace TicTacToeTest
 
         private void SetWinner(Position p)
         {
-            if (IsVerticalWinnerAtColumn(p.X) ||
-                (ValueAt(0, p.Y) == actualValue
-                && ValueAt(1, p.Y) == actualValue
-                && ValueAt(2, p.Y) == actualValue
-                ))
+            if (IsVerticalWinnerAtColumn(p.X) || 
+                IsHorizontalWinnerAtRow(p.Y))
             {
                 Winner = actualValue;
             }
         }
+
+        private bool IsHorizontalWinnerAtRow(int y) => ValueAt(0, y) == actualValue
+                                                       && ValueAt(1, y) == actualValue
+                                                       && ValueAt(2, y) == actualValue;
 
         private bool IsVerticalWinnerAtColumn(int x) => ValueAt(x, 0) == actualValue &&
                                                         ValueAt(x, 1) == actualValue &&
