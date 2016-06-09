@@ -86,6 +86,7 @@ namespace TicTacToeTest
         }
 
         #endregion
+
         #region Glue code
         private static List<Position> XWinsWithThreeXsAtColumnZero =>
             new List<Position>

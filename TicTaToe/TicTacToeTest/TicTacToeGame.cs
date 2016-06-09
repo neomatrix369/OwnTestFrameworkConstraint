@@ -26,13 +26,18 @@ namespace TicTacToeTest
         {
             if (IsVerticalWinnerAtColumn(p.X) || 
                 IsHorizontalWinnerAtRow(p.Y) ||
-                IsFirstDiagonalWinner())
+                IsFirstDiagonalWinner() ||
+                IsSecondDiagonalWinner())
             {
                 Winner = actualValue;
             }
         }
 
-        private bool IsFirstDiagonalWinner() => (ValueAt(0,0) == actualValue
+        private bool IsSecondDiagonalWinner() => (ValueAt(0, 2) == actualValue
+                                                 && ValueAt(1, 1) == actualValue
+                                                 && ValueAt(2, 0) == actualValue);
+
+        private bool IsFirstDiagonalWinner() => (ValueAt(0, 0) == actualValue
                                                  && ValueAt(1, 1) == actualValue
                                                  && ValueAt(2, 2) == actualValue);
 
