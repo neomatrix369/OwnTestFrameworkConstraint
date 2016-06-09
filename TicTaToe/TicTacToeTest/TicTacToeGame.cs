@@ -30,12 +30,9 @@ namespace TicTacToeTest
             }
         }
 
-        private bool IsVerticalWinnerAtColumn(int x)
-        {
-            return ValueAt(x, 0) == actualValue &&
-                   ValueAt(x, 1) == actualValue &&
-                   ValueAt(x, 2) == actualValue;
-        }
+        private bool IsVerticalWinnerAtColumn(int x) => ValueAt(x, 0) == actualValue &&
+                                                        ValueAt(x, 1) == actualValue &&
+                                                        ValueAt(x, 2) == actualValue;
 
         public string ValueAt(Position p) => ValueAt(p.X, p.Y);
 
