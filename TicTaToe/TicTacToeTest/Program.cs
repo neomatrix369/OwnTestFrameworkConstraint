@@ -7,7 +7,7 @@ namespace TicTacToeTest
     {
         private static TicTacToeGame game;
 
-        private static void Main(string[] args)
+        private static void Main()
         {
             ThereIsNoWinnerAsTheGameBegins();
             AfterFirstTurnPlayedAtZeroZero_ThereIsAnXAtpositionZeroZero();
