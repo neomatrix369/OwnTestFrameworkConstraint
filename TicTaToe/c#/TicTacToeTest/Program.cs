@@ -25,23 +25,27 @@ namespace TicTacToeTest
 
         #region Tests
 
-        private static void AfterPlayingTheGivenValueIsAtTheGivenPosition(List<Position> toBePlayed, Position position, string expectedValue)
+        private static void AfterPlayingTheGivenValueIsAtTheGivenPosition(List<Position> positionsToBePlayed, Position position, string expectedValue)
         {
-            CreateEmptyTicTacToeGame();
-            PlayTheGivenPositions(toBePlayed);
+            InitializeGameState(positionsToBePlayed);
             AreEqual(game.ValueAt(position), expectedValue);
         }
 
-        private static void AfterTheGivenPlaysTheWinnerIs(List<Position> positionsToBePlayed, string theWinner)
+         private static void AfterTheGivenPlaysTheWinnerIs(List<Position> positionsToBePlayed, string theWinner)
         {
-            CreateEmptyTicTacToeGame();
-            PlayTheGivenPositions(positionsToBePlayed);
+            InitializeGameState(positionsToBePlayed);
             AreEqual(game.Winner, theWinner);
         }
 
         #endregion
 
         #region Glue code
+
+        private static void InitializeGameState(List<Position> positionsToBePlayed)
+        {
+            CreateEmptyTicTacToeGame();
+            PlayTheGivenPositions(positionsToBePlayed);
+        }
 
         private static void PlayTheGivenPositions(List<Position> positions)
         {
