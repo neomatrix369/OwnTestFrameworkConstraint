@@ -11,8 +11,8 @@ namespace TicTacToeTest
         private static void Main()
         {
             AfterTheGivenPlaysTheWinnerIs(FakePlaySeries.NoPlay, "No winner - Game in progress.");
-            AfterFirstTurnPlayedAtZeroZero_ThereIsAnXAtpositionZeroZero();
-            AfterSecondTurnPlayedAtOneOne_ThereIsAnOAtPositionOneOne();
+            AfterPlayingGivenValueIsAtGivenPosition(FakePlaySeries.PlayOnceAtZeroZero, new Position(0, 0), "X");
+            AfterPlayingGivenValueIsAtGivenPosition(FakePlaySeries.PlayTwiceSecondAtOneOne, new Position(1, 1), "O");
             AfterTheGivenPlaysTheWinnerIs(FakePlaySeries.XWinsWithThreeXsAtColumnZero, "X");
             AfterTheGivenPlaysTheWinnerIs(FakePlaySeries.OWinsWithThreeOsAtColumnOne, "O");
             AfterTheGivenPlaysTheWinnerIs(FakePlaySeries.XWinsWithThreeXsAtRowZero, "X");
@@ -25,18 +25,11 @@ namespace TicTacToeTest
 
         #region Tests
 
-        private static void AfterFirstTurnPlayedAtZeroZero_ThereIsAnXAtpositionZeroZero()
+        private static void AfterPlayingGivenValueIsAtGivenPosition(List<Position> toBePlayed, Position position, string expectedValue)
         {
             CreateEmptyTicTacToeGame();
-            PlayTheGivenPositions(FakePlaySeries.PlayOnceAtZeroZero);
-            AreEqual(game.ValueAt(new Position(0, 0)), "X");
-        }
-
-        private static void AfterSecondTurnPlayedAtOneOne_ThereIsAnOAtPositionOneOne()
-        {
-            CreateEmptyTicTacToeGame();
-            PlayTheGivenPositions(FakePlaySeries.PlayTwiceSecondAtOneOne);
-            AreEqual(game.ValueAt(new Position(1,1)), "O");
+            PlayTheGivenPositions(toBePlayed);
+            AreEqual(game.ValueAt(position), expectedValue);
         }
 
         private static void AfterTheGivenPlaysTheWinnerIs(List<Position> positionsToBePlayed, string theWinner)
