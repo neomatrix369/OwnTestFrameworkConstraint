@@ -6,7 +6,7 @@
 
         private readonly string NoWinner = "No winner - Game in progress.";
 
-        private string actualValue = string.Empty;
+        private string actualPlayer = string.Empty;
 
         public TicTacToeGame()
         {
@@ -15,33 +15,46 @@
 
         public string Winner { get; private set; }
 
-        public void PlayAt(Position newPosition)
+        public void PlayNextTurnAt(Position newPosition)
         {
-            actualValue = actualValue == "X" ? "O" : "X";
-            board[newPosition.X, newPosition.Y] = actualValue;
-            SetWinner(newPosition);
-        }
-
-        private void SetWinner(Position p)
-        {
-            if (IsVerticalWinnerAtColumn(p.X) || IsHorizontalWinnerAtRow(p.Y) || IsFirstDiagonalWinner() ||
-                IsSecondDiagonalWinner())
+            DecideWhoIsPlaying();
+            SetThePosition(newPosition);
+            if (ActualPlayerHasWonAfterPlayingAt(newPosition))
             {
-                Winner = actualValue;
+                SetTheWinner();
             }
         }
 
+        private void SetTheWinner()
+        {
+            Winner = actualPlayer;
+        }
+
+        private void SetThePosition(Position newPosition)
+        {
+            board[newPosition.X, newPosition.Y] = actualPlayer;
+        }
+
+        private void DecideWhoIsPlaying()
+        {
+            actualPlayer = actualPlayer == "X" ? "O" : "X";
+        }
+
+        private bool ActualPlayerHasWonAfterPlayingAt(Position theLastPlayPosition) => 
+            IsVerticalWinnerAtColumn(theLastPlayPosition.X) || IsHorizontalWinnerAtRow(theLastPlayPosition.Y) || 
+            IsFirstDiagonalWinner() || IsSecondDiagonalWinner();
+
         private bool IsSecondDiagonalWinner()
-            => (ValueAt(0, 2) == actualValue && ValueAt(1, 1) == actualValue && ValueAt(2, 0) == actualValue);
+            => (ValueAt(0, 2) == actualPlayer && ValueAt(1, 1) == actualPlayer && ValueAt(2, 0) == actualPlayer);
 
         private bool IsFirstDiagonalWinner()
-            => (ValueAt(0, 0) == actualValue && ValueAt(1, 1) == actualValue && ValueAt(2, 2) == actualValue);
+            => (ValueAt(0, 0) == actualPlayer && ValueAt(1, 1) == actualPlayer && ValueAt(2, 2) == actualPlayer);
 
         private bool IsHorizontalWinnerAtRow(int y)
-            => ValueAt(0, y) == actualValue && ValueAt(1, y) == actualValue && ValueAt(2, y) == actualValue;
+            => ValueAt(0, y) == actualPlayer && ValueAt(1, y) == actualPlayer && ValueAt(2, y) == actualPlayer;
 
         private bool IsVerticalWinnerAtColumn(int x)
-            => ValueAt(x, 0) == actualValue && ValueAt(x, 1) == actualValue && ValueAt(x, 2) == actualValue;
+            => ValueAt(x, 0) == actualPlayer && ValueAt(x, 1) == actualPlayer && ValueAt(x, 2) == actualPlayer;
 
         public string ValueAt(Position p) => ValueAt(p.X, p.Y);
 

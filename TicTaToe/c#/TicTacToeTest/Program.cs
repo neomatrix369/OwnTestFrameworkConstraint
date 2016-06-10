@@ -45,7 +45,7 @@ namespace TicTacToeTest
 
         private static void PlayTheGivenPositions(List<Position> positions)
         {
-            positions.ForEach(p => game.PlayAt(p));
+            positions.ForEach(p => game.PlayNextTurnAt(p));
         }
 
         private static void CreateEmptyTicTacToeGame()
