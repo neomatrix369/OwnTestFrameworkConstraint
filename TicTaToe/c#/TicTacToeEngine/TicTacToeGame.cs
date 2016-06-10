@@ -40,8 +40,8 @@
             actualPlayer = actualPlayer == "X" ? "O" : "X";
         }
 
-        private bool ActualPlayerHasWonAfterPlayingAt(Position theLastPlayPosition) => 
-            IsVerticalWinnerAtColumn(theLastPlayPosition.X) || IsHorizontalWinnerAtRow(theLastPlayPosition.Y) || 
+        private bool ActualPlayerHasWonAfterPlayingAt(Position theLastPlayedPosition) => 
+            IsVerticalWinnerAtColumn(theLastPlayedPosition.X) || IsHorizontalWinnerAtRow(theLastPlayedPosition.Y) || 
             IsFirstDiagonalWinner() || IsSecondDiagonalWinner();
 
         private bool IsSecondDiagonalWinner()
