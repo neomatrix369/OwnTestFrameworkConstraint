@@ -10,25 +10,20 @@ namespace TicTacToeTest
 
         private static void Main()
         {
-            ThereIsNoWinnerAsTheGameBegins();
+            AfterTheGivenPlaysTheWinnerIs(FakePlaySeries.NoPlay, "No winner - Game in progress.");
             AfterFirstTurnPlayedAtZeroZero_ThereIsAnXAtpositionZeroZero();
             AfterSecondTurnPlayedAtOneOne_ThereIsAnOAtPositionOneOne();
-            XWinsIfThreeVerticalXsAreFoundAtColumnZero();
-            OWinsIfThreeVerticalOsAreFoundAtColumnOne();
-            XWinsIfThreeHorizontalXsAreFoundAtRowZero();
-            OWinsIfThreeHorizontalOsAreFoundAtRowTwo();
-            XWinsIfThereIsThreeXsInTheFirstDiagonal();
-            XWinsIfThereIsThreeXsInTheSecondDiagonal();
+            AfterTheGivenPlaysTheWinnerIs(FakePlaySeries.XWinsWithThreeXsAtColumnZero, "X");
+            AfterTheGivenPlaysTheWinnerIs(FakePlaySeries.OWinsWithThreeOsAtColumnOne, "O");
+            AfterTheGivenPlaysTheWinnerIs(FakePlaySeries.XWinsWithThreeXsAtRowZero, "X");
+            AfterTheGivenPlaysTheWinnerIs(FakePlaySeries.OWinsWithThreeOsAtRowTwo, "O");
+            AfterTheGivenPlaysTheWinnerIs(FakePlaySeries.XWinsWithThreeXsAtFirstDiagonal, "X");
+            AfterTheGivenPlaysTheWinnerIs(FakePlaySeries.XWinsWithThreeXsAtSecondDiagonal, "X");
 
             Console.ReadKey();
         }
 
         #region Tests
-        private static void ThereIsNoWinnerAsTheGameBegins()
-        {
-            CreateEmptyTicTacToeGame();
-            AreEqual(game.Winner, "No winner - Game in progress.");
-        }
 
         private static void AfterFirstTurnPlayedAtZeroZero_ThereIsAnXAtpositionZeroZero()
         {
@@ -44,46 +39,11 @@ namespace TicTacToeTest
             AreEqual(game.ValueAt(new Position(1,1)), "O");
         }
 
-        private static void XWinsIfThreeVerticalXsAreFoundAtColumnZero()
+        private static void AfterTheGivenPlaysTheWinnerIs(List<Position> positionsToBePlayed, string theWinner)
         {
             CreateEmptyTicTacToeGame();
-            PlayTheGivenPositions(FakePlaySeries.XWinsWithThreeXsAtColumnZero);
-            AreEqual(game.Winner, "X");
-        }
-
-        private static void OWinsIfThreeVerticalOsAreFoundAtColumnOne()
-        {
-            CreateEmptyTicTacToeGame();
-            PlayTheGivenPositions(FakePlaySeries.OWinsWithThreeOsAtColumnOne);
-            AreEqual(game.Winner, "O");
-        }
-
-        private static void XWinsIfThreeHorizontalXsAreFoundAtRowZero()
-        {
-            CreateEmptyTicTacToeGame();
-            PlayTheGivenPositions(FakePlaySeries.XWinsWithThreeXsAtRowZero);
-            AreEqual(game.Winner, "X");
-        }
-
-        private static void OWinsIfThreeHorizontalOsAreFoundAtRowTwo()
-        {
-            CreateEmptyTicTacToeGame();
-            PlayTheGivenPositions(FakePlaySeries.OWinsWithThreeOsAtRowTwo);
-            AreEqual(game.Winner, "O");
-        }
-
-        private static void XWinsIfThereIsThreeXsInTheFirstDiagonal()
-        {
-            CreateEmptyTicTacToeGame();
-            PlayTheGivenPositions(FakePlaySeries.XWinsWithThreeXsAtFirstDiagonal);
-            AreEqual(game.Winner, "X");
-        }
-
-        private static void XWinsIfThereIsThreeXsInTheSecondDiagonal()
-        {
-            CreateEmptyTicTacToeGame();
-            PlayTheGivenPositions(FakePlaySeries.XWinsWithThreeXsAtSecondDiagonal);
-            AreEqual(game.Winner, "X");
+            PlayTheGivenPositions(positionsToBePlayed);
+            AreEqual(game.Winner, theWinner);
         }
 
         #endregion

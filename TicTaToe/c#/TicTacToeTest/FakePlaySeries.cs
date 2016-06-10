@@ -5,6 +5,8 @@ namespace TicTacToeTest
 {
     public static class FakePlaySeries
     {
+        public static List<Position> NoPlay => new List<Position>();
+
         public static List<Position> XWinsWithThreeXsAtColumnZero =>
             new List<Position>
             {new Position(0, 0), new Position(1, 0), new Position(0, 1),
