@@ -25,6 +25,9 @@
             }
         }
 
+        public string ValueAt(Position p) => ValueAt(p.X, p.Y);
+
+
         private void SetTheWinner()
         {
             Winner = actualPlayer;
@@ -40,9 +43,10 @@
             actualPlayer = actualPlayer == "X" ? "O" : "X";
         }
 
-        private bool ActualPlayerHasWonAfterPlayingAt(Position theLastPlayedPosition) => 
-            IsVerticalWinnerAtColumn(theLastPlayedPosition.X) || IsHorizontalWinnerAtRow(theLastPlayedPosition.Y) || 
-            IsFirstDiagonalWinner() || IsSecondDiagonalWinner();
+        private bool ActualPlayerHasWonAfterPlayingAt(Position theLastPlayedPosition)
+            =>
+                IsVerticalWinnerAtColumn(theLastPlayedPosition.X) || IsHorizontalWinnerAtRow(theLastPlayedPosition.Y) ||
+                IsFirstDiagonalWinner() || IsSecondDiagonalWinner();
 
         private bool IsSecondDiagonalWinner()
             => (ValueAt(0, 2) == actualPlayer && ValueAt(1, 1) == actualPlayer && ValueAt(2, 0) == actualPlayer);
@@ -55,8 +59,6 @@
 
         private bool IsVerticalWinnerAtColumn(int x)
             => ValueAt(x, 0) == actualPlayer && ValueAt(x, 1) == actualPlayer && ValueAt(x, 2) == actualPlayer;
-
-        public string ValueAt(Position p) => ValueAt(p.X, p.Y);
 
         private string ValueAt(int x, int y) => board[x, y];
     }
