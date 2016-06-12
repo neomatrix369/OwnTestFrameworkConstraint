@@ -6,6 +6,7 @@ public class TicTacToeGame {
 
   private static final int FIRST_ROW = 0;
   private static final int FIRST_COLUMN = 0;
+  private static final int SECOND_COLUMN = 1;
 
   private String[][] board = new String[][] {
       { " ", " ", " " },
@@ -33,16 +34,18 @@ public class TicTacToeGame {
   }
 
   private boolean checkIfGameIsWonByPlayer(String player) {
-    return rowIsTicked(FIRST_ROW, player) ||
-        columnIsTicked(FIRST_COLUMN, player) ||
-        topLeftToBottomRightDiagonalIsTicked(player) ||
-        topRightToBottomLeftDiagonalIsTicked(player);
+    if (rowIsTicked(FIRST_ROW, player)) return true;
+    if (columnIsTicked(FIRST_COLUMN, player)) return true;
+    if (columnIsTicked(SECOND_COLUMN, player)) return true;
+    if (topLeftToBottomRightDiagonalIsTicked(player)) return true;
+    if (topRightToBottomLeftDiagonalIsTicked(player)) return true;
+    return false;
   }
 
   private boolean rowIsTicked(int row, String player) {
-    return boardAt(row, 0).equals(player) &&
-        boardAt(row, 1).equals(player) &&
-        boardAt(row, 2).equals(player);
+    return boardAt(0, row).equals(player) &&
+        boardAt(1, row).equals(player) &&
+        boardAt(2, row).equals(player);
   }
 
   private boolean topRightToBottomLeftDiagonalIsTicked(String player) {
@@ -58,9 +61,9 @@ public class TicTacToeGame {
   }
 
   private boolean columnIsTicked(int column, String player) {
-    return boardAt(0, column).equals(player) &&
-        boardAt(1, column).equals(player) &&
-        boardAt(2, column).equals(player);
+    return boardAt(column, 0).equals(player) &&
+        boardAt(column, 1).equals(player) &&
+        boardAt(column, 2).equals(player);
   }
 
   public String boardAt(int x, int y) {

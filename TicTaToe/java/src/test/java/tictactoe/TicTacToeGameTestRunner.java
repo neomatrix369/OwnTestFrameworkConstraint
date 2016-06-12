@@ -12,11 +12,17 @@ public class TicTacToeGameTestRunner {
   public static void main(String[] args) {
     x_plays_at_0_0();
     x_and_o_play_one_after_the_other();
+
     game_in_progress_no_winner();
+
     x_wins_the_game_by_ticking_all_first_column_positions();
     o_wins_the_game_by_ticking_all_first_column_positions();
+
+    x_wins_the_game_by_ticking_all_second_column_positions();
+
     x_wins_the_game_by_ticking_all_first_row_positions();
     o_wins_the_game_by_ticking_all_first_row_positions();
+
     x_wins_the_game_by_ticking_from_the_top_left_to_bottom_right_diagonal_positions();
     o_wins_the_game_by_ticking_from_the_top_right_to_bottom_left_diagonal_positions();
   }
@@ -76,6 +82,18 @@ public class TicTacToeGameTestRunner {
     playAt(0, 2); //
 
     gameWinnerShouldBe("O");
+  }
+
+  private static void x_wins_the_game_by_ticking_all_second_column_positions() {
+    createATicTacToeGame();
+
+    playAt(1, 0); // O X O
+    playAt(0, 0); //
+    playAt(1, 1); //   X
+    playAt(2, 0); //
+    playAt(1, 2); //   X
+
+    gameWinnerShouldBe("X");
   }
 
   private static void x_wins_the_game_by_ticking_all_first_row_positions() {
