@@ -19,6 +19,11 @@ public class TicTacToeGame {
   }
 
   public String winner() {
+    if (boardAt(0, 0) == "X" &&
+        boardAt(0, 1) == "X" &&
+        boardAt(0, 2) == "X") {
+      return "X";
+    }
     return "Game in progress - No winner yet!";
   }
 

@@ -42,7 +42,22 @@ public class TicTacToeGameTestRunner {
   }
 
   private static void x_wins_the_game() {
-    throw new UnsupportedOperationException();
+    createATicTacToeGame();
+
+    // X --->, Y (vertically)
+    // 0,0 1,0 2,0
+    //
+    // 0,1 1,1 2,1
+    //
+    // 0,2 1,2 2,2
+    //
+    playAt(0, 0); // X O O
+    playAt(1, 0); //
+    playAt(0, 1); // X
+    playAt(2, 0); //
+    playAt(0, 2); // X
+
+    gameWinnerShouldBe("X");
   }
 
   private static void createATicTacToeGame() {
@@ -69,7 +84,7 @@ public class TicTacToeGameTestRunner {
     String failureMessage = "Expected winner was " + expectedWinner +
         " but winner was " + game.winner();
 
-    assertTrue(game.winner() == expectedWinner,
+    assertTrue(game.winner().equals(expectedWinner),
         successMessage, failureMessage);
   }
 
