@@ -5,8 +5,6 @@ public class TicTacToeGame {
   private static final String PLAYER_O = "O";
 
   private static final int FIRST_ROW = 0;
-  private static final int FIRST_COLUMN = 0;
-  private static final int SECOND_COLUMN = 1;
 
   private String[][] board = new String[][] {
       { " ", " ", " " },
@@ -35,8 +33,13 @@ public class TicTacToeGame {
 
   private boolean checkIfGameIsWonByPlayer(String player) {
     if (rowIsTicked(FIRST_ROW, player)) return true;
-    if (columnIsTicked(FIRST_COLUMN, player)) return true;
-    if (columnIsTicked(SECOND_COLUMN, player)) return true;
+
+    for (int column = 0; column < 3; column++) {
+      if (columnIsTicked(column, player)) {
+        return true;
+      }
+    }
+
     if (topLeftToBottomRightDiagonalIsTicked(player)) return true;
     if (topRightToBottomLeftDiagonalIsTicked(player)) return true;
     return false;
