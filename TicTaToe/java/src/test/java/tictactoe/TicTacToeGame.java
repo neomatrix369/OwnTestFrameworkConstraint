@@ -36,7 +36,10 @@ public class TicTacToeGame {
             boardAt(2, 0).equals(player))||
         (boardAt(0, 0).equals(player) &&
             boardAt(1, 1).equals(player) &&
-            boardAt(2, 2).equals(player));
+            boardAt(2, 2).equals(player)) ||
+        (boardAt(2, 0).equals(player) &&
+            boardAt(1, 1).equals(player) &&
+            boardAt(0, 2).equals(player));
   }
 
   public String boardAt(int x, int y) {
