@@ -33,6 +33,7 @@ public class TicTacToeGame {
 
   private boolean checkIfGameIsWonByPlayer(String player) {
     if (rowIsTicked(FIRST_ROW, player)) return true;
+    if (rowIsTicked(1, player)) return true;
 
     for (int column = 0; column < 3; column++) {
       if (columnIsTicked(column, player)) {
