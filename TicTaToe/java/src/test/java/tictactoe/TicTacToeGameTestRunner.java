@@ -1,5 +1,7 @@
 package tictactoe;
 
+import static java.lang.String.*;
+
 /**
  * Unit test for simple TicTacToeGameTestRunner.
  */
@@ -13,8 +15,6 @@ public class TicTacToeGameTestRunner {
     game_in_progress_no_winner();
     x_wins_the_game();
   }
-
-
 
   private static void x_plays_at_0_0() {
     createATicTacToeGame();
@@ -69,31 +69,30 @@ public class TicTacToeGameTestRunner {
   }
 
   private static void boardStateAtPositionIs(int x, int y, String expectedBoardState) {
-    final String failureMessage = "expected " + expectedBoardState
-        + " to play at " + x + ", " + y + " and found "
-        + game.boardAt(x, y) + " at this position";
+    final String failureMessage =
+        format("expected %s to play at %d, %d and found %s at this position",
+            expectedBoardState, x, y, game.boardAt(x, y));
 
-    final String successMessage = expectedBoardState + " played at " + x + ", " + y;
+    final String successMessage = format("%s played at %d, %d", expectedBoardState, x, y);
 
-    assertTrue(game.boardAt(x, y) == expectedBoardState,
-        successMessage, failureMessage);
+    assertTrue(game.boardAt(x, y).equals(expectedBoardState), successMessage, failureMessage);
   }
 
   private static void gameWinnerShouldBe(String expectedWinner) {
-    String successMessage = "Game winner is: " + expectedWinner;
-    String failureMessage = "Expected winner was " + expectedWinner +
-        " but winner was " + game.winner();
+    String successMessage = format("Game winner is: %s", expectedWinner);
+    String failureMessage =
+        format("Expected winner was %s but winner was %s", expectedWinner, game.winner());
 
     assertTrue(game.winner().equals(expectedWinner),
         successMessage, failureMessage);
   }
 
   private static void displayFailureMessage(String failureMessage) {
-    System.out.println("Failure: " + failureMessage);
+    System.out.printf("Failure: %s%n", failureMessage);
   }
 
   private static void displaySuccessMessage(String successMessage) {
-    System.out.println("Success: " + successMessage);
+    System.out.printf("Success: %s%n", successMessage);
   }
 
   private static void assertTrue(boolean condition, String successMessage, String failureMessage) {
