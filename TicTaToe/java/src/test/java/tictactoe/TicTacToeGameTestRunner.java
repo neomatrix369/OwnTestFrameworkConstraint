@@ -14,6 +14,7 @@ public class TicTacToeGameTestRunner {
     x_and_o_play_one_after_the_other();
     game_in_progress_no_winner();
     x_wins_the_game();
+    o_wins_the_game();
   }
 
   private static void x_plays_at_0_0() {
@@ -41,16 +42,16 @@ public class TicTacToeGameTestRunner {
     gameWinnerShouldBe("Game in progress - No winner yet!");
   }
 
+  // X --->, Y (vertically)
+  // (0,0) (1,0) (2,0)
+  //
+  // (0,1) (1,1) (2,1)
+  //
+  // (0,2) (1,2) (2,2)
+  //
   private static void x_wins_the_game() {
     createATicTacToeGame();
 
-    // X --->, Y (vertically)
-    // 0,0 1,0 2,0
-    //
-    // 0,1 1,1 2,1
-    //
-    // 0,2 1,2 2,2
-    //
     playAt(0, 0); // X O O
     playAt(1, 0); //
     playAt(0, 1); // X
@@ -59,6 +60,20 @@ public class TicTacToeGameTestRunner {
 
     gameWinnerShouldBe("X");
   }
+
+  private static void o_wins_the_game() {
+    createATicTacToeGame();
+
+    playAt(2, 2); // O X X
+    playAt(0, 0); //
+    playAt(1, 0); // O X
+    playAt(0, 1); //
+    playAt(2, 0); // O
+    playAt(0, 2); //
+
+    gameWinnerShouldBe("O");
+  }
+
 
   private static void createATicTacToeGame() {
     game = new TicTacToeGame();

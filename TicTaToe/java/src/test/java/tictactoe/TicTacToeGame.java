@@ -1,6 +1,9 @@
 package tictactoe;
 
 public class TicTacToeGame {
+  private static final String PLAYER_X = "X";
+  private static final String PLAYER_O = "O";
+
   private String[][] board = new String[][] {
       { " ", " ", " " },
       { " ", " ", " " },
@@ -9,22 +12,25 @@ public class TicTacToeGame {
   private String lastPlayer = "";
 
   public void playAt(int x, int y) {
-    if (lastPlayer == "X") {
-      lastPlayer = "O";
+    if (lastPlayer == PLAYER_X) {
+      lastPlayer = PLAYER_O;
     } else {
-      lastPlayer = "X";
+      lastPlayer = PLAYER_X;
     }
 
     board[x][y] = lastPlayer;
   }
 
   public String winner() {
-    if (boardAt(0, 0).equals("X") &&
-        boardAt(0, 1).equals("X") &&
-        boardAt(0, 2).equals("X")) {
-      return "X";
-    }
+    if (checkIfGameIsWonByPlayer(lastPlayer)) return lastPlayer;
+
     return "Game in progress - No winner yet!";
+  }
+
+  private boolean checkIfGameIsWonByPlayer(String player) {
+    return boardAt(0, 0).equals(player) &&
+        boardAt(0, 1).equals(player) &&
+        boardAt(0, 2).equals(player);
   }
 
   public String boardAt(int x, int y) {
